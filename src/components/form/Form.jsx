@@ -5,6 +5,7 @@ import styles from "./Form.module.css";
 import Navbar from "@/components/navbar/Navbar";
 import { v4 as uuidv4 } from "uuid";
 import { loadRadianData, saveRadianData } from "@/lib/storageUtils"; // Import storage utility functions
+import bcrypt from "bcryptjs"; // Import bcryptjs for hashing passwords
 
 import { Autocomplete, useLoadScript } from "@react-google-maps/api";
 
@@ -198,7 +199,7 @@ export default function Form() {
     return fieldErrors[name] === undefined;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let formIsValid = true;
     let firstErrorField = null;
@@ -215,9 +216,15 @@ export default function Form() {
     });
 
     if (formIsValid) {
+      // Hash the password before saving
+      const hashedPassword = await bcrypt.hash(formData.password, 10);
+
       const userId = generateUniqueId();
-      saveUserToLocalStorage(userId, formData);
-      window.location.href = "/user";
+      saveUserToLocalStorage(userId, {
+        ...formData,
+        password: hashedPassword, // Replace plain password with hashed password
+      });
+      window.location.href = "/user/"; // Change this to your next page URL
     } else if (firstErrorField) {
       const errorElement = document.querySelector(
         `[name="${firstErrorField}"]`
@@ -278,6 +285,7 @@ export default function Form() {
       />
       <div className={styles.formContainer}>
         <form onSubmit={handleSubmit} noValidate>
+          {/* Form fields */}
           <div className={styles.formGroup}>
             <label htmlFor="firstName">
               First Name <span className={styles.required}>*</span>

@@ -66,10 +66,7 @@ export default function UserManagement() {
       return;
     }
 
-    // Get IDs of users in Group B
     const groupBIds = groupB.map((user) => user.id);
-
-    // Call the function to remove these users from local storage
     removeUsersFromLocalStorage(groupBIds);
 
     // Optionally clear Group B after submission
@@ -100,12 +97,6 @@ export default function UserManagement() {
         buttonLabel="Add User"
         buttonLink="/"
       />
-      <button
-        className={styles.addButton}
-        onClick={() => (window.location.href = "/signup")}
-      >
-        Add More Users
-      </button>
 
       <div className={styles.topSection}>
         <div
@@ -136,7 +127,7 @@ export default function UserManagement() {
           cardColor="green"
         >
           <button
-            className={`${styles.addRemainingButton} ${styles.greenButton} `}
+            className={`${styles.addRemainingButton} ${styles.greenButton}`}
             onClick={() => handleAddRemainingUsersToGroup(setGroupA, groupA)}
           >
             Add Remaining

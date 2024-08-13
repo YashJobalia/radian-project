@@ -1,28 +1,10 @@
 .container {
   padding: 20px;
+  padding-top: 95px; /* Adjust this value based on your navbar height */
   background-color: #13274C;
   min-height: 100vh;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: white;
-}
-
-.addButton {
-  display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
-  background-color: #2a9df4; /* Lighter blue for better contrast */
-  color: white;
-  border: none;
-  border-radius: 20px;
-  font-size: 14px;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.addButton:hover {
-  background-color: #1c7ed6; /* Slightly darker on hover */
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 .topSection {
