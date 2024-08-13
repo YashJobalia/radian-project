@@ -1,0 +1,60 @@
+.groupContainer {
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 48%;
+  min-height: 400px;
+  overflow: hidden;
+}
+
+.greenBackground {
+  /* background-color: #218838; */
+  background-color: #4bda6a; /* Medium green for Keep Users */
+}
+
+.redBackground {
+  /* background-color: #c82333; */
+  background-color: #ee606e; /* Medium red for Remove Users */
+}
+
+.groupHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.groupTitle {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  overflow-y: auto;
+  max-height: 300px;
+  width: 100%;
+  border: 2px dashed #ffffff; /* White dashed border */
+  padding: 10px;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .groupContainer {
+    max-width: 100%;
+    min-height: auto;
+  }
+
+  .cardContainer {
+    justify-content: center;
+    max-height: 200px;
+  }
+}

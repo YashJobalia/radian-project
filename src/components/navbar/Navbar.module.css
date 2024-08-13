@@ -1,0 +1,113 @@
+.navbar {
+  background-color: white;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbarContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+}
+
+.navbarLogo {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 50px;
+}
+
+.navbarTitle {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #13274c;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.navbarActions {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.navbarToggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.bar {
+  height: 4px;
+  width: 25px;
+  background-color: #13274c;
+  margin: 3px 0;
+  transition: 0.4s;
+}
+
+.navbarButton {
+  background-color: #13274c;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  margin-left: 20px;
+}
+
+.navbarButton:hover {
+  background-color: #0b1d38;
+}
+
+/* Media Query for Mobile Devices */
+@media screen and (max-width: 768px) {
+  .navbarToggle {
+    display: flex;
+  }
+
+  .navbarTitle {
+    display: none;
+  }
+
+  .navbarMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .mobileTitle {
+    color: #13274c;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px 0;
+  }
+
+  .navbarButton {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+}

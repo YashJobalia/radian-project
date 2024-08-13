@@ -1,0 +1,40 @@
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modalContent {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add some depth to the modal */
+    max-width: 500px;
+    width: 100%;
+    text-align: left;
+    position: relative;
+  }
+  
+  .modalButton {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    background-color: #13274C; /* Navy blue color for the button */
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+  }
+  
+  .modalButton:hover {
+    background-color: #0f1e3d; /* Darker navy blue on hover */
+  }
+  

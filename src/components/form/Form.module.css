@@ -1,0 +1,263 @@
+/* Form.module.css */
+
+.pageContainer {
+  background-color: #13274c;
+  min-height: 100vh;
+  padding-top: 100px; /* Adjust for navbar height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.formContainer {
+  width: 100%;
+  max-width: 900px;
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  margin-bottom: 40px;
+}
+
+.formHeading {
+  text-align: center;
+  color: #13274c;
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formGroupTerms {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.formGroup label,
+.formGroupTerms label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #13274c;
+}
+
+.formGroupTerms label {
+  margin-bottom: 0;
+  margin-left: 8px;
+}
+
+.formGroup input[type="text"],
+.formGroup input[type="email"],
+.formGroup input[type="password"],
+.formGroup input[type="tel"],
+.formGroup input[type="date"],
+.formGroup input[type="file"],
+.formGroup select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  color: #000;
+}
+
+.formGroup input[type="text"]:focus,
+.formGroup input[type="email"]:focus,
+.formGroup input[type="password"]:focus,
+.formGroup input[type="tel"]:focus,
+.formGroup input[type="date"]:focus,
+.formGroup select:focus {
+  border-color: #13274c;
+  box-shadow: 0 0 10px rgba(19, 39, 76, 0.3);
+}
+
+.errorInput {
+  border-color: red !important;
+  background-color: #ffe6e6;
+}
+
+.errorMsg {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+.required {
+  color: red;
+}
+
+.helpText {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 5px;
+  display: block;
+}
+
+.phoneGroup {
+  display: flex;
+}
+
+.phoneCode {
+  width: 60px; /* Reduced width */
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+}
+
+.phoneCode:focus {
+  border-right: none;
+}
+
+#phone {
+  border-radius: 0 4px 4px 0;
+}
+
+.phoneCode + input {
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+}
+
+.genderGroup {
+  display: flex;
+  gap: 15px;
+}
+
+.genderGroup label {
+  margin-left: 5px;
+  color: #13274c;
+}
+
+.genderGroup input[type="radio"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #13274c;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.genderGroup input[type="radio"]:checked {
+  background-color: #13274c;
+  border-color: #13274c;
+}
+
+.genderGroup input[type="radio"]:hover {
+  border-color: #0a1b3a;
+}
+
+.switchContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #13274c;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.fileInput {
+  padding: 8px;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s ease;
+}
+
+.fileInput:hover {
+  border-color: #13274c;
+}
+
+.submitBtn,
+.resetBtn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+}
+
+.submitBtn {
+  background-color: #13274c;
+  color: white;
+}
+
+.resetBtn {
+  background-color: #ccc;
+  color: #13274c;
+}
+
+.submitBtn:hover {
+  background-color: #0a1b3a;
+}
+
+.resetBtn:hover {
+  background-color: #b0b0b0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .formGroup,
+  .formGroupTerms,
+  .phoneGroup,
+  .genderGroup {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .formGroupTerms label {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}

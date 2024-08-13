@@ -1,0 +1,79 @@
+.card {
+  position: relative;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Deep shadow for depth */
+  color: #13274C; /* Navy blue text color */
+  background-color: white; /* Default white background */
+  border: 2px solid #13274C; /* Navy blue border */
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 180px; /* Increased height */
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Lift the card on hover */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+.cardHeader {
+  margin-bottom: 10px;
+}
+
+.cardTitle {
+  font-size: 18px;
+  margin: 0;
+}
+
+.cardUsername {
+  font-size: 14px;
+  color: #6c757d; /* Slightly muted color for the username */
+  margin: 0;
+}
+
+.viewButton {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  background-color: #13274C; /* Navy blue color for the button */
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.viewButton:hover {
+  background-color: #0f1e3d; /* Darker navy blue on hover */
+}
+
+.greenCard {
+  background-color: #05da4c; /* Rich green for Keep Users */
+  color: white; /* Text color changes to white on green background */
+}
+
+.redCard {
+  background-color: #f94646; /* Rich red for Remove Users */
+  color: white; /* Text color changes to white on red background */
+}
+
+.modalButton {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  background-color: #13274C; /* Navy blue color for the button */
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.modalButton:hover {
+  background-color: #0f1e3d; /* Darker navy blue on hover */
+}
