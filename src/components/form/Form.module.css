@@ -1,5 +1,4 @@
-/* Form.module.css */
-
+/* General Page Styles */
 .pageContainer {
   background-color: #13274c;
   min-height: 100vh;
@@ -28,6 +27,7 @@
   font-weight: bold;
 }
 
+/* Form Group Styles */
 .formGroup {
   margin-bottom: 20px;
 }
@@ -77,6 +77,7 @@
   box-shadow: 0 0 10px rgba(19, 39, 76, 0.3);
 }
 
+/* Error Handling Styles */
 .errorInput {
   border-color: red !important;
   background-color: #ffe6e6;
@@ -92,6 +93,7 @@
   color: red;
 }
 
+/* Helper Text Styles */
 .helpText {
   font-size: 0.8rem;
   color: #888;
@@ -99,6 +101,7 @@
   display: block;
 }
 
+/* Phone Input Group */
 .phoneGroup {
   display: flex;
 }
@@ -107,10 +110,6 @@
   width: 60px; /* Reduced width */
   border-right: none;
   border-radius: 4px 0 0 4px;
-}
-
-.phoneCode:focus {
-  border-right: none;
 }
 
 #phone {
@@ -122,6 +121,7 @@
   border-radius: 0 4px 4px 0;
 }
 
+/* Gender Group Styles */
 .genderGroup {
   display: flex;
   gap: 15px;
@@ -152,6 +152,7 @@
   border-color: #0a1b3a;
 }
 
+/* Switch Component Styles */
 .switchContainer {
   display: flex;
   align-items: center;
@@ -197,13 +198,47 @@
 }
 
 input:checked + .slider {
-  background-color: #13274c;
+  background-color: #13274c; /* Navy blue when active */
 }
 
 input:checked + .slider:before {
   transform: translateX(26px);
 }
 
+input:disabled + .slider {
+  background-color: #5a739b; /* Lighter shade of navy blue when disabled */
+  cursor: not-allowed;
+}
+
+input:disabled:checked + .slider {
+  background-color: #5a739b; /* Lighter shade of navy blue when disabled and checked */
+}
+
+input:disabled + .slider:before,
+input:disabled:checked + .slider:before {
+  background-color: #d3d3d3; /* Lighter shade for the knob when disabled */
+}
+
+.switchLabel {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  color: white;
+  line-height: 34px;
+  font-size: 12px;
+}
+
+.switchOption {
+  font-size: 16px;
+  padding: 0 10px;
+}
+
+.activeOption {
+  color: #13274c;
+  font-weight: bold;
+}
+
+/* File Input Styles */
 .fileInput {
   padding: 8px;
   border-radius: 4px;
@@ -216,6 +251,7 @@ input:checked + .slider:before {
   border-color: #13274c;
 }
 
+/* Button Styles */
 .submitBtn,
 .resetBtn {
   display: block;

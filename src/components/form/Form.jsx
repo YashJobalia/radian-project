@@ -28,7 +28,7 @@ export default function Form() {
     gender: "",
     department: "",
     plan: "",
-    paymentCycle: "", // Store as string (Monthly/Annual)
+    paymentCycle: "Monthly", // Default to "Monthly"
     terms: false,
     file: null,
     address: "",
@@ -173,14 +173,9 @@ export default function Form() {
         if (!value || value === "") fieldErrors.plan = "Please select a plan";
         break;
       case "file":
-        if (!value) {
-          fieldErrors.file = "File is required";
-        } else if (value.size > 5 * 1024 * 1024) {
+        if (value && value.size > 5 * 1024 * 1024) {
           fieldErrors.file = "File size must be less than 5MB";
-        } else if (
-          typeof value.name !== "string" ||
-          !value.name.endsWith(".pdf")
-        ) {
+        } else if (value && !value.name.endsWith(".pdf")) {
           fieldErrors.file = "Only PDF files are allowed";
         }
         break;
@@ -220,11 +215,15 @@ export default function Form() {
       const hashedPassword = await bcrypt.hash(formData.password, 10);
 
       const userId = generateUniqueId();
-      saveUserToLocalStorage(userId, {
+
+      // Create a new object excluding the confirmPassword field
+      const { confirmPassword, ...dataToSave } = {
         ...formData,
         password: hashedPassword, // Replace plain password with hashed password
-      });
-      window.location.href = "/user/"; // Change this to your next page URL
+      };
+
+      saveUserToLocalStorage(userId, dataToSave);
+      window.location.href = "/user/"; // Redirect to the /user/ page after form submission
     } else if (firstErrorField) {
       const errorElement = document.querySelector(
         `[name="${firstErrorField}"]`
@@ -267,7 +266,7 @@ export default function Form() {
       gender: "",
       department: "",
       plan: "",
-      paymentCycle: "",
+      paymentCycle: "Monthly",
       terms: false,
       file: null,
       address: "",
@@ -645,10 +644,23 @@ export default function Form() {
                     })
                   }
                 />
-                <span className={styles.slider}></span>
+                <span className={`${styles.slider} ${styles.switchLabel}`}>
+                  {formData.paymentCycle === "Annual" ? "Annually" : "Monthly"}
+                </span>
               </label>
-              <span>
-                {formData.paymentCycle === "Annual" ? "Annual" : "Monthly"}
+              <span
+                className={`${styles.switchOption} ${
+                  formData.paymentCycle === "Monthly" ? styles.activeOption : ""
+                }`}
+              >
+                Monthly
+              </span>
+              <span
+                className={`${styles.switchOption} ${
+                  formData.paymentCycle === "Annual" ? styles.activeOption : ""
+                }`}
+              >
+                Annually
               </span>
             </div>
           </div>
@@ -668,7 +680,8 @@ export default function Form() {
 
           <div className={styles.formGroup}>
             <label htmlFor="file">
-              Upload File (PDF only) <span className={styles.required}>*</span>
+              Upload File (PDF only){" "}
+              <span className={styles.optional}>(Optional)</span>
             </label>
             <input
               id="file"
