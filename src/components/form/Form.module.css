@@ -267,14 +267,23 @@ input:disabled:checked + .slider:before {
 }
 
 /* Button Styles */
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+}
+
 .submitBtn,
 .resetBtn {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  margin-top: 20px;
+  /* display: block; */
+  /* width: 100%; */
+  padding: 12px 20px;
+  /* margin-top: 20px; */
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-top: 15px;
   font-size: 1rem;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
   border: none;
 }
@@ -285,16 +294,19 @@ input:disabled:checked + .slider:before {
 }
 
 .resetBtn {
-  background-color: #ccc;
-  color: #13274c;
+  background-color: #13274c;
+  color: white;
 }
 
 .submitBtn:hover {
   background-color: #0a1b3a;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
 }
 
 .resetBtn:hover {
-  background-color: #b0b0b0;
+  /* background-color: #b0b0b0; */
+  background-color: #0a1b3a;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
 }
 
 /* Responsive Design */

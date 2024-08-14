@@ -785,16 +785,18 @@ export default function Form() {
             {errors.terms && <p className={styles.errorMsg}>{errors.terms}</p>}
           </div>
 
-          <button type="submit" className={styles.submitBtn}>
-            Submit
-          </button>
-          <button
-            type="button"
-            className={styles.resetBtn}
-            onClick={handleReset}
-          >
-            Reset
-          </button>
+          <div className={styles.btnContainer}>
+            <button
+              type="button"
+              className={styles.resetBtn}
+              onClick={handleReset}
+            >
+              Reset
+            </button>
+            <button type="submit" className={styles.submitBtn}>
+              Submit
+            </button>
+          </div>
         </form>
       </div>
     </div>
