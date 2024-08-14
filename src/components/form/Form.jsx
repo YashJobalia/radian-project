@@ -215,10 +215,12 @@ export default function Form() {
         if (!value || value === "") fieldErrors.plan = "Please select a plan";
         break;
       case "file":
+        if (value && value.type != "application/pdf") {
+          fieldErrors.file = "Only PDF files are allowed";
+          break;
+        }
         if (value && value.size > 5 * 1024 * 1024) {
           fieldErrors.file = "File size must be less than 5MB";
-        } else if (value && !value.name.endsWith(".pdf")) {
-          fieldErrors.file = "Only PDF files are allowed";
         }
         break;
       case "terms":

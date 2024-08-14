@@ -56,7 +56,7 @@ export default function Card({ user, onDragStart, color }) {
             <strong>Email:</strong> {user.email}
           </p>
           <p style={{ color: "#13274C", margin: "10px 0" }}>
-            <strong>Phone:</strong> {user.phone}
+            <strong>Phone:</strong> {user.phoneCode} {user.phone}
           </p>
           <p style={{ color: "#13274C", margin: "10px 0" }}>
             <strong>Date of Birth:</strong> {user.dob}
