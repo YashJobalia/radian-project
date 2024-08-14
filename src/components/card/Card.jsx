@@ -68,10 +68,11 @@ export default function Card({ user, onDragStart, color }) {
             <strong>Address:</strong> {user.address}
           </p>
           <p style={{ color: "#13274C", margin: "10px 0" }}>
-            <strong>Zip:</strong> {user.zip}
+            <strong>Department:</strong> {user.department}
           </p>
           <p style={{ color: "#13274C", margin: "10px 0" }}>
-            <strong>Department:</strong> {user.department}
+            <strong>Location Preferences:</strong>{" "}
+            {user.locationPreferences.join(", ")}
           </p>
           <p style={{ color: "#13274C", margin: "10px 0" }}>
             <strong>Plan:</strong> {user.plan}
