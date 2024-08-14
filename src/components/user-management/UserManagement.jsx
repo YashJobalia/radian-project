@@ -72,8 +72,6 @@ export default function UserManagement() {
     // Optionally clear Group B after submission
     setGroupB([]);
 
-    alert("Users in 'Remove Users' have been removed from local storage.");
-
     // Refresh the page after submission
     window.location.reload();
   };
