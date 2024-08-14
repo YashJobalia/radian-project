@@ -13,12 +13,12 @@
 
 .greenBackground {
   /* background-color: #218838; */
-  background-color: #4bda6a; /* Medium green for Keep Users */
+  background-color: #b8e9c3; /* Medium green for Keep Users */
 }
 
 .redBackground {
   /* background-color: #c82333; */
-  background-color: #ee606e; /* Medium red for Remove Users */
+  background-color: #edb4b9; /* Medium red for Remove Users */
 }
 
 .groupHeader {
