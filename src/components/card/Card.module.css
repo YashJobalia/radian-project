@@ -53,12 +53,12 @@
 }
 
 .greenCard {
-  background-color: #60b77d; /* Rich green for Keep Users */
+  background-color: #6fcb8e; /* Rich green for Keep Users */
   color: white; /* Text color changes to white on green background */
 }
 
 .redCard {
-  background-color: #df7979; /* Rich red for Remove Users */
+  background-color: #d37070; /* Rich red for Remove Users */
   color: white; /* Text color changes to white on red background */
 }
 
