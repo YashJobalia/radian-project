@@ -32,6 +32,20 @@
   margin-bottom: 20px;
 }
 
+/* .rowGroup {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.formGroupLarge {
+  flex: 3;
+}
+
+.formGroupSmall {
+  flex: 1;
+} */
+
 .formGroupTerms {
   display: flex;
   align-items: center;
@@ -107,7 +121,8 @@
 }
 
 .phoneCode {
-  width: 60px; /* Reduced width */
+  margin-right: 10px;
+  width: 10%; /* Adjusted width */
   border-right: none;
   border-radius: 4px 0 0 4px;
 }
@@ -284,6 +299,10 @@ input:disabled:checked + .slider:before {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .rowGroup {
+    flex-direction: column;
+  }
+
   .formGroup,
   .formGroupTerms,
   .phoneGroup,
@@ -296,4 +315,21 @@ input:disabled:checked + .slider:before {
     margin-left: 0;
     margin-top: 10px;
   }
+}
+
+.checkboxGroup {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.checkboxGroup label {
+  display: flex;
+  align-items: center;
+  font-weight: normal;
+  color: #13274c;
+}
+
+.checkboxGroup input[type="checkbox"] {
+  margin-right: 8px;
 }

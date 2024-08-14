@@ -14,7 +14,7 @@ const placesLibrary = ["places"];
 export default function Form() {
   const [formData, setFormData] = useState({
     firstName: "",
-    middleName: "",
+    middleInitial: "",
     lastName: "",
     username: "",
     email: "",
@@ -27,12 +27,12 @@ export default function Form() {
     dob: "",
     gender: "",
     department: "",
+    locationPreferences: [],
     plan: "",
     paymentCycle: "Monthly", // Default to "Monthly"
     terms: false,
     file: null,
     address: "",
-    zip: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -91,12 +91,16 @@ export default function Form() {
   const validateField = (name, value) => {
     let fieldErrors = {};
     const nameRegex = /^[A-Za-z]+$/;
+    const middleInitialRegex = /^[A-Za-z]?$/; // Only one letter allowed
     const usernameRegex = /^[A-Za-z0-9]{8,14}$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const passwordRegex =
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,16}$/;
-    const phoneRegex = /^\d{10}$/;
-    const zipRegex = /^\d{5}$/; // ZIP code validation
+    // const phoneRegex = /^\d{10}$/;
+    // const phoneRegex =
+    //   /^(?:\+?\d{1,3})?[-.\s]?(\(?\d{3}\)?[-.\s]?)?\d{3}[-.\s]?\d{4}$/;
+    const phoneRegex = /^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
+    // const zipRegex = /^\d{5}$/; // ZIP code validation
 
     switch (name) {
       case "firstName":
@@ -104,9 +108,9 @@ export default function Form() {
         else if (!nameRegex.test(value))
           fieldErrors.firstName = "First name must contain only letters";
         break;
-      case "middleName":
-        if (value && !nameRegex.test(value))
-          fieldErrors.middleName = "Middle name must contain only letters";
+      case "middleInitial":
+        if (value && !middleInitialRegex.test(value))
+          fieldErrors.middleInitial = "Middle initial must be one letter";
         break;
       case "lastName":
         if (!value) fieldErrors.lastName = "Last name is required";
@@ -151,23 +155,61 @@ export default function Form() {
       case "phone":
         if (!value) fieldErrors.phone = "Phone number is required";
         else if (!phoneRegex.test(value))
-          fieldErrors.phone = "Phone number must be 10 digits";
+          fieldErrors.phone = "Phone number is invalid";
         break;
       case "altPhone":
         if (value && !phoneRegex.test(value))
-          fieldErrors.altPhone = "Phone number must be 10 digits";
+          fieldErrors.altPhone = "Phone number is invalid";
+        break;
+      case "dob":
+        if (!value) {
+          fieldErrors.dob = "Date of birth is required";
+        } else {
+          const today = new Date();
+          const birthDate = new Date(value);
+          let age = today.getFullYear() - birthDate.getFullYear();
+          const monthDiff = today.getMonth() - birthDate.getMonth();
+          const dayDiff = today.getDate() - birthDate.getDate();
+
+          // Check if the date is in the future or today
+          if (
+            birthDate > today ||
+            birthDate.toDateString() === today.toDateString()
+          ) {
+            fieldErrors.dob = "Date of birth cannot be in the future";
+          }
+
+          // Adjust age if the birth date hasn't occurred yet this year
+          if (
+            !fieldErrors.dob &&
+            (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0))
+          ) {
+            age--;
+          }
+
+          // Check if the user is at least 18 years old
+          if (!fieldErrors.dob && age < 18) {
+            fieldErrors.dob = "You must be at least 18 years old";
+          }
+
+          // Check if the user is more than 100 years old
+          if (!fieldErrors.dob && age > 100) {
+            fieldErrors.dob = "Date of birth cannot be more than 100 years ago";
+          }
+        }
         break;
       case "address":
         if (!value) fieldErrors.address = "Address is required";
         break;
-      case "zip":
-        if (!value) fieldErrors.zip = "ZIP code is required";
-        else if (!zipRegex.test(value))
-          fieldErrors.zip = "ZIP code must be 5 digits";
-        break;
       case "department":
         if (!value || value === "")
           fieldErrors.department = "Please select a department";
+        break;
+      case "locationPreferences":
+        if (value.length === 0) {
+          fieldErrors.locationPreferences =
+            "Please select at least one location preference";
+        }
         break;
       case "plan":
         if (!value || value === "") fieldErrors.plan = "Please select a plan";
@@ -249,10 +291,25 @@ export default function Form() {
     saveRadianData(radianData);
   };
 
+  // Handle checkbox change for location preferences
+  const handleCheckboxChange = (e) => {
+    const { value } = e.target;
+    setFormData((prevState) => {
+      const updatedPreferences = prevState.locationPreferences.includes(value)
+        ? prevState.locationPreferences.filter((pref) => pref !== value)
+        : [...prevState.locationPreferences, value];
+      validateField("locationPreferences", updatedPreferences);
+      return {
+        ...prevState,
+        locationPreferences: updatedPreferences,
+      };
+    });
+  };
+
   const handleReset = () => {
     setFormData({
       firstName: "",
-      middleName: "",
+      middleInitial: "",
       lastName: "",
       username: "",
       email: "",
@@ -270,7 +327,6 @@ export default function Form() {
       terms: false,
       file: null,
       address: "",
-      zip: "",
     });
     setErrors({});
   };
@@ -305,19 +361,19 @@ export default function Form() {
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor="middleName">Middle Name</label>
+            <label htmlFor="middleInitial">Middle Initial</label>
             <input
-              id="middleName"
+              id="middleInitial"
               type="text"
-              name="middleName"
-              value={formData.middleName}
+              name="middleInitial"
+              value={formData.middleInitial}
               onChange={handleChange}
               onBlur={handleBlur}
-              placeholder="Enter your middle name (optional)"
-              className={errors.middleName && styles.errorInput}
+              placeholder="Enter your middle initial, eg. M (optional)"
+              className={errors.middleInitial && styles.errorInput}
             />
-            {errors.middleName && (
-              <p className={styles.errorMsg}>{errors.middleName}</p>
+            {errors.middleInitial && (
+              <p className={styles.errorMsg}>{errors.middleInitial}</p>
             )}
           </div>
 
@@ -458,7 +514,7 @@ export default function Form() {
                 value={formData.phone}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                placeholder="1234567890"
+                placeholder="(123) 456-7890"
                 className={errors.phone && styles.errorInput}
               />
             </div>
@@ -486,7 +542,7 @@ export default function Form() {
                 value={formData.altPhone}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                placeholder="1234567890"
+                placeholder="(123) 456-7890"
                 className={errors.altPhone && styles.errorInput}
               />
             </div>
@@ -568,23 +624,6 @@ export default function Form() {
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor="zip">
-              ZIP Code <span className={styles.required}>*</span>
-            </label>
-            <input
-              id="zip"
-              type="text"
-              name="zip"
-              value={formData.zip}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              placeholder="Enter your ZIP code"
-              className={errors.zip && styles.errorInput}
-            />
-            {errors.zip && <p className={styles.errorMsg}>{errors.zip}</p>}
-          </div>
-
-          <div className={styles.formGroup}>
             <label htmlFor="department">
               Department <span className={styles.required}>*</span>
             </label>
@@ -604,6 +643,37 @@ export default function Form() {
             </select>
             {errors.department && (
               <p className={styles.errorMsg}>{errors.department}</p>
+            )}
+          </div>
+
+          <div className={styles.formGroup}>
+            <label>
+              Location Preferences <span className={styles.required}>*</span>
+            </label>
+            <div className={styles.checkboxGroup}>
+              <label>
+                <input
+                  type="checkbox"
+                  name="locationPreferences"
+                  value="Tennessee"
+                  checked={formData.locationPreferences.includes("Tennessee")}
+                  onChange={handleCheckboxChange}
+                />
+                Tennessee
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="locationPreferences"
+                  value="Minnesota"
+                  checked={formData.locationPreferences.includes("Minnesota")}
+                  onChange={handleCheckboxChange}
+                />
+                Minnesota
+              </label>
+            </div>
+            {errors.locationPreferences && (
+              <p className={styles.errorMsg}>{errors.locationPreferences}</p>
             )}
           </div>
 
@@ -630,6 +700,13 @@ export default function Form() {
           <div className={styles.formGroup}>
             <label>Payment Cycle</label>
             <div className={styles.switchContainer}>
+              <span
+                className={`${styles.switchOption} ${
+                  formData.paymentCycle === "Monthly" ? styles.activeOption : ""
+                }`}
+              >
+                Monthly
+              </span>
               <label className={styles.switch}>
                 <input
                   type="checkbox"
@@ -645,16 +722,9 @@ export default function Form() {
                   }
                 />
                 <span className={`${styles.slider} ${styles.switchLabel}`}>
-                  {formData.paymentCycle === "Annual" ? "Annually" : "Monthly"}
+                  {/* {formData.paymentCycle === "Annual" ? "Annually" : "Monthly"} */}
                 </span>
               </label>
-              <span
-                className={`${styles.switchOption} ${
-                  formData.paymentCycle === "Monthly" ? styles.activeOption : ""
-                }`}
-              >
-                Monthly
-              </span>
               <span
                 className={`${styles.switchOption} ${
                   formData.paymentCycle === "Annual" ? styles.activeOption : ""
