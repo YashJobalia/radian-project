@@ -357,7 +357,7 @@ export default function Form() {
         buttonLink="/user/"
       />
       <div className={styles.formContainer}>
-        <form onSubmit={handleSubmit} noValidate>
+        <form onSubmit={handleSubmit} noValidate autocomplete="off">
           {/* Form fields */}
           <div className={styles.formGroup}>
             <label htmlFor="firstName">
@@ -372,6 +372,7 @@ export default function Form() {
               onBlur={handleBlur}
               placeholder="Enter your first name"
               className={errors.firstName && styles.errorInput}
+              autocomplete="off"
             />
             {errors.firstName && (
               <p className={styles.errorMsg}>{errors.firstName}</p>
@@ -389,6 +390,7 @@ export default function Form() {
               onBlur={handleBlur}
               placeholder="Enter your middle initial, eg. M (optional)"
               className={errors.middleInitial && styles.errorInput}
+              autocomplete="off"
             />
             {errors.middleInitial && (
               <p className={styles.errorMsg}>{errors.middleInitial}</p>
@@ -408,6 +410,7 @@ export default function Form() {
               onBlur={handleBlur}
               placeholder="Enter your last name"
               className={errors.lastName && styles.errorInput}
+              autocomplete="off"
             />
             {errors.lastName && (
               <p className={styles.errorMsg}>{errors.lastName}</p>
@@ -427,6 +430,7 @@ export default function Form() {
               onBlur={handleBlur}
               placeholder="Create a unique username"
               className={errors.username && styles.errorInput}
+              autocomplete="off"
             />
             {errors.username && (
               <p className={styles.errorMsg}>{errors.username}</p>
@@ -446,6 +450,7 @@ export default function Form() {
               onBlur={handleBlur}
               placeholder="Enter your email address"
               className={errors.email && styles.errorInput}
+              autocomplete="off"
             />
             {errors.email && <p className={styles.errorMsg}>{errors.email}</p>}
           </div>
@@ -461,6 +466,7 @@ export default function Form() {
               onBlur={handleBlur}
               placeholder="Enter an alternate email (optional)"
               className={errors.altEmail && styles.errorInput}
+              autocomplete="off"
             />
             {errors.altEmail && (
               <p className={styles.errorMsg}>{errors.altEmail}</p>
@@ -480,6 +486,7 @@ export default function Form() {
               onBlur={handleBlur}
               placeholder="Create a strong password"
               className={errors.password && styles.errorInput}
+              autocomplete="off"
             />
             {errors.password && (
               <p className={styles.errorMsg}>{errors.password}</p>
@@ -503,6 +510,7 @@ export default function Form() {
               onBlur={handleBlur}
               placeholder="Confirm your password"
               className={errors.confirmPassword && styles.errorInput}
+              autocomplete="off"
             />
             {errors.confirmPassword && (
               <p className={styles.errorMsg}>{errors.confirmPassword}</p>
@@ -534,6 +542,7 @@ export default function Form() {
                 onBlur={handleBlur}
                 placeholder="(123) 456-7890"
                 className={errors.phone && styles.errorInput}
+                autocomplete="off"
               />
             </div>
             {errors.phone && <p className={styles.errorMsg}>{errors.phone}</p>}
@@ -582,6 +591,7 @@ export default function Form() {
               onBlur={handleBlur}
               placeholder="Select your date of birth"
               className={errors.dob && styles.errorInput}
+              autocomplete="off"
             />
             {errors.dob && <p className={styles.errorMsg}>{errors.dob}</p>}
           </div>
@@ -634,6 +644,7 @@ export default function Form() {
                 onBlur={handleBlur}
                 placeholder="Enter your address"
                 className={errors.address && styles.errorInput}
+                autocomplete="off"
               />
             </Autocomplete>
             {errors.address && (
