@@ -151,11 +151,11 @@ export default function UserManagement() {
       </div>
 
       <div className={styles.buttonContainer}>
-        <button className={styles.submitButton} onClick={handleSubmit}>
-          Submit
-        </button>
         <button className={styles.resetButton} onClick={handleReset}>
           Reset
+        </button>
+        <button className={styles.submitButton} onClick={handleSubmit}>
+          Submit
         </button>
       </div>
     </div>

@@ -62,11 +62,14 @@
   border: none;
   border-radius: 20px;
   font-size: 16px;
-  cursor: pointer;
-  /* background-color: #1b4f72; */
-  color: white;
+  cursor: pointer;  
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+  background-color: #ffffff; /* Lighter blue for better contrast */
+  color: #13274C;
+
+  margin: 10px;
 }
 
 .submitButton {
@@ -75,7 +78,8 @@
 }
 
 .resetButton {
-  background-color: #3b7da9; /* Lighter blue for better contrast */
+  background-color: #ffffff; /* Lighter blue for better contrast */
+  color: #13274C;  
 }
 
 .submitButton:hover {
