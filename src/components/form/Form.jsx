@@ -70,6 +70,7 @@ export default function Form() {
     let newValue = type === "checkbox" ? checked : value;
     if (type === "file") {
       newValue = files[0];
+      // newValue = value;
     }
 
     setFormData((prevState) => ({
@@ -215,11 +216,26 @@ export default function Form() {
         if (!value || value === "") fieldErrors.plan = "Please select a plan";
         break;
       case "file":
-        if (value && value.type != "application/pdf") {
-          fieldErrors.file = "Only PDF files are allowed";
-          break;
+        // console.log("FILE:" + value);
+        // console.log(value.size);
+        // console.log("Type:" + typeof value);
+
+        const allowedFiles = [".pdf"];
+
+        const fileRegex = new RegExp(
+          "([a-zA-Z0-9s_\\.-:])+(" + allowedFiles.join("|") + ")$"
+        );
+
+        if (typeof value === "string" && !fileRegex.test(value.toLowerCase())) {
+          fieldErrors.file = "Only pdf files are allowed";
+        } else if (
+          typeof value === "object" &&
+          value.type !== "application/pdf"
+        ) {
+          fieldErrors.file = "Only pdf files are allowed";
         }
-        if (value && value.size > 5 * 1024 * 1024) {
+
+        if (typeof value === "object" && value.size > 5 * 1024 * 1024) {
           fieldErrors.file = "File size must be less than 5MB";
         }
         break;
@@ -737,19 +753,6 @@ export default function Form() {
             </div>
           </div>
 
-          <div className={styles.formGroupTerms}>
-            <input
-              id="terms"
-              type="checkbox"
-              name="terms"
-              checked={formData.terms}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            <label htmlFor="terms">I accept all the terms and conditions</label>
-            {errors.terms && <p className={styles.errorMsg}>{errors.terms}</p>}
-          </div>
-
           <div className={styles.formGroup}>
             <label htmlFor="file">
               Upload File (PDF only){" "}
@@ -764,8 +767,22 @@ export default function Form() {
               className={`${errors.file ? styles.errorInput : ""} ${
                 styles.fileInput
               }`}
+              accept=".pdf"
             />
             {errors.file && <p className={styles.errorMsg}>{errors.file}</p>}
+          </div>
+
+          <div className={styles.formGroupTerms}>
+            <input
+              id="terms"
+              type="checkbox"
+              name="terms"
+              checked={formData.terms}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            <label htmlFor="terms">I accept all the terms and conditions</label>
+            {errors.terms && <p className={styles.errorMsg}>{errors.terms}</p>}
           </div>
 
           <button type="submit" className={styles.submitBtn}>
