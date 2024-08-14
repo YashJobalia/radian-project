@@ -63,15 +63,30 @@
   border-radius: 20px;
   font-size: 16px;
   cursor: pointer;
-  background-color: #2a9df4; /* Lighter blue for better contrast */
+  /* background-color: #1b4f72; */
   color: white;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.submitButton:hover,
+.submitButton {
+  background-color: #ffffff; /* Lighter blue for better contrast */
+  color: #13274C;
+}
+
+.resetButton {
+  background-color: #3b7da9; /* Lighter blue for better contrast */
+}
+
+.submitButton:hover {
+  background-color: #13274C; /* Slightly darker on hover */
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
 .resetButton:hover {
-  background-color: #1c7ed6; /* Slightly darker on hover */
+  background-color: #13274C; /* Slightly darker on hover */
+  color: #ffffff;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
 }
 
