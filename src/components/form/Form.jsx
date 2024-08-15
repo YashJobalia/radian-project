@@ -356,7 +356,7 @@ export default function Form() {
   return (
     <div className={styles.pageContainer}>
       <Navbar
-        title="User Registration Form"
+        title="User Sign Up Form"
         buttonLabel="User Management"
         buttonLink="/user/"
       />
