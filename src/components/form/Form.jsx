@@ -622,15 +622,6 @@ export default function Form() {
                 onChange={handleChange}
               />
               <label htmlFor="female">Female</label>
-
-              <input
-                type="radio"
-                id="other"
-                name="gender"
-                value="Other"
-                onChange={handleChange}
-              />
-              <label htmlFor="other">Other</label>
             </div>
           </div>
 
