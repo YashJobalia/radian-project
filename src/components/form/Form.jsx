@@ -219,24 +219,28 @@ export default function Form() {
         // console.log("FILE:" + value);
         // console.log(value.size);
         // console.log("Type:" + typeof value);
+        if (value) {
+          const allowedFiles = [".pdf"];
 
-        const allowedFiles = [".pdf"];
+          const fileRegex = new RegExp(
+            "([a-zA-Z0-9s_\\.-:])+(" + allowedFiles.join("|") + ")$"
+          );
 
-        const fileRegex = new RegExp(
-          "([a-zA-Z0-9s_\\.-:])+(" + allowedFiles.join("|") + ")$"
-        );
+          if (
+            typeof value === "string" &&
+            !fileRegex.test(value.toLowerCase())
+          ) {
+            fieldErrors.file = "Only pdf files are allowed";
+          } else if (
+            typeof value === "object" &&
+            value.type !== "application/pdf"
+          ) {
+            fieldErrors.file = "Only pdf files are allowed";
+          }
 
-        if (typeof value === "string" && !fileRegex.test(value.toLowerCase())) {
-          fieldErrors.file = "Only pdf files are allowed";
-        } else if (
-          typeof value === "object" &&
-          value.type !== "application/pdf"
-        ) {
-          fieldErrors.file = "Only pdf files are allowed";
-        }
-
-        if (typeof value === "object" && value.size > 5 * 1024 * 1024) {
-          fieldErrors.file = "File size must be less than 5MB";
+          if (typeof value === "object" && value.size > 5 * 1024 * 1024) {
+            fieldErrors.file = "File size must be less than 5MB";
+          }
         }
         break;
       case "terms":
