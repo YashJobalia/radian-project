@@ -90,11 +90,7 @@ export default function UserManagement() {
 
   return (
     <div className={styles.container}>
-      <Navbar
-        title="User Management Dashboard"
-        buttonLabel="Add User"
-        buttonLink="/"
-      />
+      <Navbar title="User Management" buttonLabel="Add User" buttonLink="/" />
 
       <div className={styles.topSection}>
         <div
